@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.InsetDrawable;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -101,11 +102,16 @@ public class SpinnerDialog extends CordovaPlugin {
 
               dialog.setContentView(horizontalLayout);
               horizontalLayout.setClipToOutline(true);
-
             WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-            lp.height = 150;
-            lp.width = 300;
-          //  dialog.setBa
+              DisplayMetrics metrics = new DisplayMetrics();
+              cordova.getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+              //int width = display.getWidth();  // deprecated
+              //int height = display.getHeight();  // deprecated
+         //   lp.height = 240;
+          //  lp.width = 500;
+              lp.height  = (int) Math.round(metrics.heightPixels/7.5);
+              lp.width = (int) Math.round(lp.height*2.5);
+              //  dialog.setBa
              dialog.getWindow().setAttributes(lp);
             dialog.getWindow().setDimAmount(0.0f);
             //dialog.getWindow().setClipToOutline(true);
