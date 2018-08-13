@@ -11,10 +11,17 @@ import org.json.JSONException;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.InsetDrawable;
+import android.view.Gravity;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.TextView;
 
 public class SpinnerDialog extends CordovaPlugin {
 
@@ -79,8 +86,34 @@ public class SpinnerDialog extends CordovaPlugin {
           }
           
           if (title == null && message == null) {
-            dialog.setContentView(new ProgressBar(cordova.getActivity()));
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+              ProgressBar  pb = new ProgressBar(cordova.getActivity());
+              pb.getIndeterminateDrawable().setColorFilter(0xFFFFFFFF, android.graphics.PorterDuff.Mode.MULTIPLY);
+
+            //  pb.setProgressTintList(ColorStateList.valueOf(Color.BLACK));
+              LinearLayout   horizontalLayout=new LinearLayout(cordova.getActivity());
+              horizontalLayout.setOrientation(LinearLayout.VERTICAL);
+              horizontalLayout.setGravity(Gravity.CENTER_VERTICAL);
+              horizontalLayout.addView(pb);
+              TextView  theButton= new TextView(cordova.getActivity());
+              theButton.setText("Un momento...");
+              theButton.setGravity(Gravity.CENTER);
+              horizontalLayout.addView(theButton);
+
+              dialog.setContentView(horizontalLayout);
+              horizontalLayout.setClipToOutline(true);
+
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            lp.height = 150;
+            lp.width = 300;
+          //  dialog.setBa
+             dialog.getWindow().setAttributes(lp);
+            dialog.getWindow().setDimAmount(0.0f);
+            //dialog.getWindow().setClipToOutline(true);
+            ColorDrawable colordrawable = new ColorDrawable(Color.BLACK);
+            colordrawable.setAlpha(100);
+           // DialogUtils.setMargins( dialog, 0, 150, 50, 75 );
+        //    InsetDrawable inset = new InsetDrawable(colordrawable, 50);
+            dialog.getWindow().setBackgroundDrawable(colordrawable);
           }
         }
       };
