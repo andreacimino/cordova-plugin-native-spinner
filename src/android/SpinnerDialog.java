@@ -37,11 +37,12 @@ public class SpinnerDialog extends CordovaPlugin {
       final String title = "null".equals(args.getString(0)) ? null : args.getString(0);
       final String message = "null".equals(args.getString(1)) ? null : args.getString(1);
       final boolean isFixed = args.getBoolean(2);
-                
+      final String inner_message = "null".equals(args.getString(3)) ? null : args.getString(3);
+
       final CordovaInterface cordova = this.cordova;
       Runnable runnable = new Runnable() {
         public void run() {
-          
+
           DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
               if (!isFixed) {
@@ -52,17 +53,17 @@ public class SpinnerDialog extends CordovaPlugin {
               }
             }
           };
-          
+
           ProgressDialog dialog;
           if (isFixed) {
             //If there is a progressDialog yet change the text
             if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-              dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
+              dialog = SpinnerDialog.this.spinnerDialogStack.peek();
               if (title != null) {
-                dialog.setTitle(title);	
+                dialog.setTitle(title);
               }
               if (message!=null) {
-                dialog.setMessage(message);	
+                dialog.setMessage(message);
               }
             }
             else{
@@ -72,20 +73,20 @@ public class SpinnerDialog extends CordovaPlugin {
           } else {
             //If there is a progressDialog yet change the text
             if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-              dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
+              dialog = SpinnerDialog.this.spinnerDialogStack.peek();
               if (title != null) {
-                dialog.setTitle(title);	
+                dialog.setTitle(title);
               }
               if (message!=null) {
-                dialog.setMessage(message);	
-              }	
+                dialog.setMessage(message);
+              }
             }
             else{
               dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
               SpinnerDialog.this.spinnerDialogStack.push(dialog);
             }
           }
-          
+
           if (title == null && message == null) {
 
               ProgressBar  pb = new ProgressBar(cordova.getActivity());
@@ -100,7 +101,7 @@ public class SpinnerDialog extends CordovaPlugin {
               horizontalLayout.setGravity(Gravity.CENTER_VERTICAL);
               horizontalLayout.addView(pb);
               TextView  theButton= new TextView(cordova.getActivity());
-              theButton.setText("Un momento...");
+              theButton.setText(inner_message);
               theButton.setGravity(Gravity.CENTER);
               horizontalLayout.addView(theButton);
 

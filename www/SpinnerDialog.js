@@ -1,12 +1,12 @@
 var exec = require('cordova/exec');
 
 module.exports = {
-  show: function (title, message, cancelCallback, iosOptions) {
+  show: function (title, message, inner_message, cancelCallback,  iosOptions) {
     if (cancelCallback == true && typeof cancelCallback !== "function") {
       cancelCallback = function () { };
     }
     var isPlatformIos = (navigator.userAgent.match(/iPad/i)) == "iPad" || (navigator.userAgent.match(/iPhone/i)) == "iPhone" ? true : false;
-    var params = [title, message, !!cancelCallback];
+    var params = [title, message, inner_message, !!cancelCallback];
     if (isPlatformIos) {
       if (typeof iosOptions != "object") {
         iosOptions = { overlayOpacity: 0.35, textColorRed: 1, textColorGreen: 1, textColorBlue: 1 }
@@ -19,3 +19,4 @@ module.exports = {
     cordova.exec(success, fail, 'SpinnerDialog', 'hide', [wpStatusbar]);
   }
 };
+
