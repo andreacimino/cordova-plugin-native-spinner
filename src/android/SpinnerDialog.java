@@ -36,8 +36,8 @@ public class SpinnerDialog extends CordovaPlugin {
 
       final String title = "null".equals(args.getString(0)) ? null : args.getString(0);
       final String message = "null".equals(args.getString(1)) ? null : args.getString(1);
-      final boolean isFixed = args.getBoolean(2);
-      final String inner_message = "null".equals(args.getString(3)) ? null : args.getString(3);
+      final String inner_message = "null".equals(args.getString(2)) ? null : args.getString(2);
+      final boolean isFixed = args.getBoolean(3);
 
       final CordovaInterface cordova = this.cordova;
       Runnable runnable = new Runnable() {
