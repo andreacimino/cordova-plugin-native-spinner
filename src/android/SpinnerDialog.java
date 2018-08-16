@@ -87,9 +87,13 @@ public class SpinnerDialog extends CordovaPlugin {
           }
           
           if (title == null && message == null) {
-              ProgressBar  pb = new ProgressBar(cordova.getActivity());
-              pb.getIndeterminateDrawable().setColorFilter(0xFFFFFFFF, android.graphics.PorterDuff.Mode.MULTIPLY);
 
+              ProgressBar  pb = new ProgressBar(cordova.getActivity());
+            //  pb.getIndeterminateDrawable().setColorFilter(0xFFFFFFFF, android.graphics.PorterDuff.Mode.MULTIPLY);
+          //  pb.setIndeterminateTintMode();
+            pb.getIndeterminateDrawable().setColorFilter(
+                    0xFFFFFFFF,
+                    android.graphics.PorterDuff.Mode.SRC_IN);
             //  pb.setProgressTintList(ColorStateList.valueOf(Color.BLACK));
               LinearLayout   horizontalLayout=new LinearLayout(cordova.getActivity());
               horizontalLayout.setOrientation(LinearLayout.VERTICAL);
