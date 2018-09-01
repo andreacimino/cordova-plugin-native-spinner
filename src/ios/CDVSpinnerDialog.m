@@ -41,8 +41,8 @@
     float screen_width = [[UIScreen mainScreen]bounds].size.width;
     float screen_height = [UIScreen mainScreen].bounds.size.height;
 
-    float width = [[UIScreen mainScreen]bounds].size.width/1.8;
-    float height = [UIScreen mainScreen].bounds.size.height/7.5;
+    float width = MIN([[UIScreen mainScreen]bounds].size.width/1.8, 170);
+    float height = MIN([UIScreen mainScreen].bounds.size.height/7.5f, 80);
     return CGRectMake( (screen_width-width)/2, (screen_height -height)/2, width, height);
 }
 
@@ -67,8 +67,8 @@
         float screen_width = [[UIScreen mainScreen]bounds].size.width;
         float screen_height = [UIScreen mainScreen].bounds.size.height;
         
-        float width = [[UIScreen mainScreen]bounds].size.width/1.8;
-        float height = [UIScreen mainScreen].bounds.size.height/7.5f;
+        float width = MIN([[UIScreen mainScreen]bounds].size.width/1.8, 170);
+        float height = MIN([UIScreen mainScreen].bounds.size.height/7.5f, 80);
         int spinner_width = 15;
         _indicator.frame = CGRectMake((width/2) -spinner_width, ((height/2)/2)-8, _indicator.frame.size.width, _indicator.frame.size.height);
 
