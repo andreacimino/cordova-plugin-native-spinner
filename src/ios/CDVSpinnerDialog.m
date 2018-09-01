@@ -6,6 +6,7 @@
 //
 
 #import "CDVSpinnerDialog.h"
+#import "MainViewController.h"
 
 @interface CDVSpinnerDialog () {
     UIActivityIndicatorView *indicator;
@@ -130,6 +131,9 @@
 - (UIViewController*) getTopMostViewController {
     UIViewController *presentingViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     while (presentingViewController.presentedViewController != nil) {
+        if ([presentingViewController isKindOfClass:[MainViewController class]]) {
+            break;
+        }
         presentingViewController = presentingViewController.presentedViewController;
     }
     return presentingViewController;
@@ -139,5 +143,3 @@
 
 
 @end
-
-
