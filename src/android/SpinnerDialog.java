@@ -114,8 +114,8 @@ public class SpinnerDialog extends CordovaPlugin {
               //int height = display.getHeight();  // deprecated
          //   lp.height = 240;
           //  lp.width = 500;
-              lp.height  = (int) Math.round(metrics.heightPixels/7.5);
-              lp.width = (int) Math.round(lp.height*2.5);
+              lp.height  = Math.min((int) Math.round(metrics.heightPixels/7.5), 200);
+              lp.width = Math.min((int) Math.round(lp.height*2.5), 500);
               //  dialog.setBa
              dialog.getWindow().setAttributes(lp);
             dialog.getWindow().setDimAmount(0.0f);
