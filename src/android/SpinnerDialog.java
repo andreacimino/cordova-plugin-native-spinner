@@ -42,7 +42,9 @@ public class SpinnerDialog extends CordovaPlugin {
       final CordovaInterface cordova = this.cordova;
       Runnable runnable = new Runnable() {
         public void run() {
-
+         if (cordova.getActivity().isFinishing()) {
+            return;
+          }
           DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
               if (!isFixed) {
